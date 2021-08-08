@@ -33,13 +33,18 @@ void Shader::SetUniform1f(const std::string& name, float value)
     CHECK_ERROR(glUniform1f(GetUniformLocation(name), value));
 }
 
-unsigned int Shader::GetUniformLocation(const std::string& name)
+void Shader::SetUniform1i(const std::string& name, int value)
+{
+    CHECK_ERROR(glUniform1i(GetUniformLocation(name), value));
+}
+
+int Shader::GetUniformLocation(const std::string& name)
 {
     if (m_UniformLocationCache.find(name) != m_UniformLocationCache.end())
     {
         return m_UniformLocationCache[name];
     }
-    unsigned int location = glGetUniformLocation(m_RendererId, name.c_str());
+    int location = glGetUniformLocation(m_RendererId, name.c_str());
     if (location == -1)
     {
         std::cout << "Warning: " << name << " does not exist";
