@@ -23,6 +23,11 @@ void Shader::Unbind() const
     CHECK_ERROR(glUseProgram(0));
 }
 
+void Shader::SetUniformMat4f(const std::string& name, glm::mat4& matrix)
+{
+    CHECK_ERROR(glUniformMatrix4fv(GetUniformLocation(name), 1, GL_FALSE, &matrix[0][0]));
+}
+
 void Shader::SetUniform4f(const std::string& name, float v0, float v1, float v2, float v3)
 {
     CHECK_ERROR(glUniform4f(GetUniformLocation(name), v0, v1, v2, v3));

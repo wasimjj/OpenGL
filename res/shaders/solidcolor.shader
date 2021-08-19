@@ -4,10 +4,10 @@ layout(location = 0) in vec4 positions;
 layout(location = 1) in vec2 texCoord;
 
 out vec2 v_TexCoord;
-
+uniform mat4 u_MVP;
 void main()
 {
-	gl_Position = positions;
+	gl_Position = u_MVP*positions;
 	v_TexCoord = texCoord;
 };
 #shader fragment
@@ -23,4 +23,5 @@ void main()
 {
 	 vec4 texColor = texture(u_Texture, v_TexCoord);
 	 color = texColor;
+	 color = vec4(1);
 };
